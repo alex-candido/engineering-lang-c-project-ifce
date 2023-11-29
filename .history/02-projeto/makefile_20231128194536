@@ -1,0 +1,6 @@
+
+all: 
+	gcc -c ./src/imprimir_mensagem.c -I ./include
+
+clean: 
+	rm ./bin/* ./obj/*

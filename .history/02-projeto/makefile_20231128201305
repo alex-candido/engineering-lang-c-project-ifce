@@ -1,0 +1,52 @@
+
+# all: 
+# 	gcc -c ./src/gerar_vetor_aleatorio.c -I ./include -o ./obj/gerar_vetor_aleatorio.o
+# 	gcc -c ./src/imprimir_mensagem.c -I ./include -o ./obj/imprimir_mensagem.o
+# 	gcc -c ./src/imprimir_vetor.c -I ./include -o ./obj/imprimir_vetor.o
+
+# 	gcc ./apps/app.c ./obj/*.o -I ./include -o ./bin/app
+
+# run: 
+# 	./bin/app
+
+# clean: 
+# 	rm ./bin/* ./obj/*
+
+APPS = ./apps
+BIN = ./bin
+INCLUDE = ./include
+LIB = ./lib
+OBJ = ./obj
+SRC = ./src
+
+FLAGS = -O3 -Wall
+LIBS = -lm -led -L $(LIB)
+
+
+
+all: libed myapps
+
+libed: \
+	$(OBJ)/gerar_vetor_aleatorio.o \
+	$(OBJ)/imprimir_mensagem.o \
+	$(OBJ)/imprimir_vetor.o 
+	ar -rcs $(LIB)/libed.a $(OBJ)/*.o
+
+
+myapps: clean_apps \
+	$(BIN)/app \
+
+$(OBJ)/%.o: $(SRC)/%.c $(INCLUDE)/%.h
+	gcc $(FLAGS) -c $< -I $(INCLUDE) -o $@
+
+$(BIN)/%: $(APPS)/%.c
+	gcc $(FLAGS) $< $(LIBS) -I $(INCLUDE) -o $@
+
+run:
+	$(BIN)/app
+
+clean:
+	rm -rf $(BIN)/* $(LIB)/* $(OBJ)/*
+
+clean_apps:
+	rm -rf $(BIN)/*

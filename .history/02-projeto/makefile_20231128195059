@@ -1,0 +1,11 @@
+
+all: 
+	gcc -c ./src/gerar_vetor_aleatorio.c -I ./include -o ./obj/gerar_vetor_aleatorio.o
+	gcc -c ./src/imprimir_mensagem.c -I ./include -o ./obj/imprimir_mensagem.o
+	gcc -c ./src/imprimir_mensagem.c -I ./include -o ./obj/imprimir_mensagem.o
+
+run: 
+	echo "Rodando um programa"
+
+clean: 
+	rm ./bin/* ./obj/*

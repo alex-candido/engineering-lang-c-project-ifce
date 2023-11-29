@@ -1,0 +1,2 @@
+void gerarVetorAleatorio();
+void imprimirMensagem();
